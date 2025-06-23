@@ -11,7 +11,7 @@
     }
     body, html {
       margin: 0; padding: 0; height: 100vh;
-      background: url('imagens/fundo2.png') no-repeat center center fixed;
+      background: url('../assets/imagens/fundo2.png') no-repeat center center fixed;
       background-size: cover;
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       color: white; overflow: hidden; user-select: none;
@@ -106,7 +106,7 @@
 
   <div class="popup" id="popupLumen" role="dialog" aria-modal="true" aria-labelledby="popupTitle" tabindex="-1">
     <button class="fechar" aria-label="Fechar pop-up" id="btnFecharPopup" type="button">✖</button>
-    <img src="imagens/logo.png" alt="Logo do Lumen OS" />
+    <img src="../assets/imagens/logo.png" alt="Logo do Lumen OS" />
     <h2 id="popupTitle">⚡ LUMEN está pronto para instalar!</h2>
     <p id="popupDesc"><br />Ative agora sua conexão com o ecossistema HUMANO.</p>
     <button class="install-btn" id="btnInstalarLumen" type="button">Instalar Lumen OS</button>
@@ -122,7 +122,7 @@
   <nav class="dock" role="navigation" aria-label="Barra de tarefas principal">
     <div class="dock-left">
       <button class="dock-logo-button" id="logoBtn" aria-haspopup="true" aria-expanded="false" aria-controls="menuStart" aria-label="Abrir menu iniciar" type="button">
-        <img src="imagens/logo.png" alt="Logo HUMANO" />
+        <img src="../assets/imagens/logo.png" alt="Logo HUMANO" />
       </button>
       <div class="start-menu" id="menuStart" role="menu" aria-hidden="true" tabindex="-1">
         <h4>Exemplo Incompleto - MVP Não Interativo</h4>
@@ -131,12 +131,12 @@
         <div class="menu-app" role="menuitem" tabindex="0">📚 Documentação</div>
       </div>
       <div class="dock-apps" role="toolbar" aria-label="Aplicativos principais">
-        <button aria-label="Arquivos" type="button"><img class="icon" src="imagens/folder.png" alt=""><span>Arquivos</span></button>
-        <button aria-label="Navegador" type="button"><img class="icon" src="imagens/globe.png" alt=""><span>Navegador</span></button>
-        <div class="pesquisa" role="search" aria-label="Pesquisar"><img class="icon" src="imagens/search.png" alt=""><input type="search" placeholder="Pesquisar..." aria-label="Pesquisar" /></div>
-        <button aria-label="Galeria" type="button"><img class="icon" src="imagens/fotos.png" alt=""><span>Galeria</span></button>
-        <button aria-label="Email" type="button"><img class="icon" src="imagens/mail.png" alt=""><span>Email</span></button>
-        <button aria-label="Configurações" type="button"><img class="icon" src="imagens/settings.png" alt=""><span>Ajustes</span></button>
+        <button aria-label="Arquivos" type="button"><img class="icon" src="../assets/imagens/folder.png" alt=""><span>Arquivos</span></button>
+        <button aria-label="Navegador" type="button"><img class="icon" src="../assets/imagens/globe.png" alt=""><span>Navegador</span></button>
+        <div class="pesquisa" role="search" aria-label="Pesquisar"><img class="icon" src="../assets/imagens/search.png" alt=""><input type="search" placeholder="Pesquisar..." aria-label="Pesquisar" /></div>
+        <button aria-label="Galeria" type="button"><img class="icon" src="../assets/imagens/fotos.png" alt=""><span>Galeria</span></button>
+        <button aria-label="Email" type="button"><img class="icon" src="../assets/imagens/mail.png" alt=""><span>Email</span></button>
+        <button aria-label="Configurações" type="button"><img class="icon" src="../assets/imagens/settings.png" alt=""><span>Ajustes</span></button>
       </div>
     </div>
     <div class="data-hora" id="dataHora" aria-live="polite" aria-atomic="true" role="timer">
@@ -146,7 +146,7 @@
   </nav>
 
   <div class="logo-container" id="modoOfflineContainer" title="Instalar Lumen OS" role="button" tabindex="0">
-    <img src="imagens/logo.png" alt="Instalar Lumen OS" class="modo-offline" />
+    <img src="../assets/imagens/logo.png" alt="Instalar Lumen OS" class="modo-offline" />
     <div class="logo-text">Instalar Lumen OS</div>
   </div>
 
