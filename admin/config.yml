@@ -6,27 +6,9 @@ media_folder: "assets/imagens"
 public_folder: "/assets/imagens"
 
 collections:
-  - name: "mvp"
-    label: "MVP"
+  - name: "paginas"
+    label: "Páginas"
     folder: "HUMANO.MVP"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Conteúdo", name: "body", widget: "markdown" }
-  
-  - name: "filiais"
-    label: "Filiais"
-    folder: "filiais"
-    create: true
-    slug: "{{slug}}"
-    fields:
-      - { label: "Título", name: "title", widget: "string" }
-      - { label: "Conteúdo", name: "body", widget: "markdown" }
-  
-  - name: "paginas_raiz"
-    label: "Páginas Raiz"
-    folder: "."   # raiz do repositório
     create: true
     slug: "{{slug}}"
     fields:
