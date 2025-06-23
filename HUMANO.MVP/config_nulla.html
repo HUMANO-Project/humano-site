@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Configuração do Nulla - HUMANO MVP</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 20px;
+      height: 100vh;
+      background: rgb(56, 56, 56); /* Fundo cinza mais claro, como solicitado */
+      color: #f0f0f0;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-sizing: border-box;
+    }
+
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 35px; /* Controla o espaço entre o título, botões e seletor */
+      width: 100%;
+      max-width: 500px;
+    }
+
+    h1 {
+      margin: 0;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    .actions-group {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .idioma-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+    }
+
+    select {
+      padding: 10px 20px;
+      font-size: 1rem;
+      border-radius: 8px;
+      background: #3c3c3c;
+      color: white;
+      border: 1px solid #666;
+      min-width: 300px;
+      text-align: center;
+      cursor: pointer;
+    }
+
+    option[disabled] {
+      color: #aaa;
+    }
+
+    .future-notice {
+      font-size: 0.85rem;
+      color: #aaa;
+      margin: 0;
+    }
+    
+    .divider {
+      font-size: 1rem;
+      color: #888;
+    }
+
+    /* Estilo base para botões */
+    .button {
+      padding: 12px 24px;
+      font-size: 1rem;
+      font-weight: 500;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s, transform 0.2s;
+    }
+
+    .button-primary {
+      background-color: #f0f0f0;
+      color: #1a1a1a;
+    }
+
+    .button-primary:hover {
+      background-color: #ffffff;
+      transform: scale(1.05);
+    }
+    
+    .button-link {
+      color: #ccc;
+      text-decoration: underline;
+      background: none;
+    }
+    
+    .button-link:hover {
+      color: #ffffff;
+    }
+
+  </style>
+</head>
+<body>
+
+  <main>
+    <h1>Configuração do Nulla</h1>
+
+    <div class="actions-group">
+      <button id="connectButton" class="button button-primary">Conectar à Internet</button>
+      <div class="divider">ou</div>
+      <button id="offlineButton" class="button button-link">Testar Offline</button>
+    </div>
+
+    <div class="idioma-box">
+      <label for="idioma">Escolha o idioma:</label>
+      <select id="idioma" name="idioma">
+        <option disabled selected>(Demonstração - Apenas Português disponível)</option>
+        <option value="pt-br">Português (Brasil)</option>
+        <option value="en-us">English (US)</option>
+        <option value="es">Español</option>
+        </select>
+      <p class="future-notice">O idioma selecionado não afeta a interface neste MVP.</p>
+    </div>
+  </main>
+
+  <script>
+    // Seleciona os botões pelos seus IDs
+    const connectButton = document.getElementById('connectButton');
+    const offlineButton = document.getElementById('offlineButton');
+
+    // Funções de redirecionamento
+    function testarOffline() {
+      window.location.href = 'nulla_bloqueio.html';
+    }
+
+    function conectarInternet() {
+      window.location.href = 'conectar_internet.html';
+    }
+
+    // Adiciona os "escutadores de eventos" para os cliques
+    // Esta é a forma moderna e correta de lidar com eventos em JS
+    connectButton.addEventListener('click', conectarInternet);
+    offlineButton.addEventListener('click', testarOffline);
+  </script>
+
+</body>
+</html>

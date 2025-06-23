@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de Privacidade (Exemplo) - HUMANO</title>
+  <style>
+    /* Usando nosso sistema de design para consistência */
+    :root {
+      --color-primary: #00aaff;
+      --color-primary-dark: #0088cc;
+      --color-text: #e0e0e0;
+      --color-text-muted: #a0b0c0;
+      --color-bg-dark: #11141a;
+      --color-surface: #1a1f2c;
+      --color-border: #30384a;
+      --font-family-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --border-radius: 8px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-family-sans);
+      background-color: var(--color-bg-dark);
+      color: var(--color-text);
+      line-height: 1.7;
+      padding: 40px 20px;
+    }
+    
+    .container {
+      background: var(--color-surface);
+      padding: 30px 40px;
+      border-radius: var(--border-radius);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+      max-width: 800px;
+      width: 100%;
+      margin: 0 auto;
+      border: 1px solid var(--color-border);
+      animation: fadeIn 0.5s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+      text-align: center;
+      color: var(--color-text);
+      margin-bottom: 8px;
+      font-weight: 700;
+      font-size: 2rem;
+    }
+
+    .meta-info {
+        text-align: center;
+        font-size: 0.85rem;
+        color: var(--color-text-muted);
+        margin-bottom: 24px;
+    }
+
+    /* ATUALIZAÇÃO: Estilo para o box de aviso adicionado */
+    .aviso {
+      background: rgba(255, 235, 59, 0.1); /* Um tom de amarelo para alerta */
+      border: 1px solid rgba(255, 235, 59, 0.3);
+      padding: 12px 15px;
+      border-radius: var(--border-radius);
+      margin-bottom: 32px;
+      font-size: 0.9rem;
+      color: #fff1a7;
+      text-align: center;
+    }
+
+    h2 {
+      font-size: 1.4rem;
+      color: var(--color-primary);
+      border-bottom: 1px solid var(--color-border);
+      padding-bottom: 8px;
+      margin-top: 32px;
+      margin-bottom: 16px;
+    }
+
+    p {
+      margin-bottom: 16px;
+      color: var(--color-text-muted);
+    }
+    
+    ul {
+        margin-bottom: 16px;
+        padding-left: 20px;
+    }
+
+    li {
+        margin-bottom: 8px;
+        color: var(--color-text-muted);
+    }
+
+    a {
+      color: var(--color-primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      color: var(--color-primary-dark);
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🛡️ Política de Privacidade – HUMANO</h1>
+    <p class="meta-info">
+        Última atualização: 21/06/2025<br>
+        Versão: 1.0
+    </p>
+
+    <div class="aviso">
+        <strong>Atenção:</strong> As datas, versões e o e-mail de contato nesta página são apenas exemplos ilustrativos para este MVP. O e-mail <strong>privacidade@humano.org</strong> não é funcional.
+    </div>
+
+    <h2>1. Compromisso com a Privacidade</h2>
+    <p>A HUMANO é um ecossistema digital soberano, ético e descentralizado. Nosso compromisso é assegurar que a sua privacidade seja respeitada, protegida e nunca negociada. Operamos com base em princípios de transparência, autonomia informacional e segurança criptográfica de última geração.</p>
+    <p>Não coletamos dados desnecessários. Não vendemos, compartilhamos ou monetizamos suas informações pessoais. Você é o dono da sua identidade digital.</p>
+
+    <h2>2. Quais dados coletamos?</h2>
+    <p>A HUMANO só coleta dados estritamente necessários...</p>
+    <ul>
+        <li>Nome e e-mail (em cadastro de sistemas autorizados);</li>
+        <li>Dados de autenticação (criptografados com múltiplos níveis);</li>
+        <li>Informações técnicas (como tipo de dispositivo, SO e versão usada);</li>
+        <li>Dados de uso do sistema para fins de segurança e auditoria (sempre anonimizados);</li>
+        <li>Identidade Digital Real (IDR), quando ativada por você, com proteção sob chaves descentralizadas.</li>
+    </ul>
+
+    <h2>3. Como usamos seus dados?</h2>
+    <p>Os dados são utilizados exclusivamente para...</p>
+    <ul>
+        <li>Autenticar seu acesso de forma segura;</li>
+        <li>Proteger sua integridade e a integridade da rede HUMANO;</li>
+        <li>Operar funcionalidades do sistema operacional ou apps internos;</li>
+        <li>Garantir um ambiente digital autônomo e ético;</li>
+        <li>Melhorar a segurança e performance dos serviços (sem rastreamento comercial).</li>
+    </ul>
+
+    <h2>4. Compartilhamento de Dados</h2>
+    <p>A HUMANO não compartilha seus dados com terceiros fora do ecossistema...</p>
+    <ul>
+        <li>Limitado;</li>
+        <li>Criptografado;</li>
+        <li>Consentido por você;</li>
+        <li>Documentado em contrato público.</li>
+    </ul>
+
+    <h2>5. Armazenamento e Proteção</h2>
+    <p>Todos os dados são protegidos com criptografia...</p>
+    <p>Aplicamos o conceito de Zero Trust: nenhum sistema ou usuário é confiável por padrão.</p>
+    <p>A proteção é reforçada por IA adaptativa, firewalls nativos e validação contínua.</p>
+
+    <h2>6. Seus Direitos</h2>
+    <p>Você tem controle completo sobre seus dados. Isso inclui...</p>
+    <ul>
+        <li>Acesso ao conteúdo armazenado;</li>
+        <li>Retirada de consentimento a qualquer momento;</li>
+        <li>Exclusão definitiva de registros;</li>
+        <li>Portabilidade da sua identidade digital (IDR) entre ambientes da HUMANO.</li>
+    </ul>
+    <p>Para exercer esses direitos, envie uma solicitação pelo canal oficial de atendimento da plataforma que estiver usando.</p>
+
+    <h2>7. Cookies e Tecnologias de Rastreamento</h2>
+    <p>A HUMANO não utiliza cookies comerciais, rastreamento oculto ou fingerprinting...</p>
+
+    <h2>8. Mudanças na Política</h2>
+    <p>Esta Política pode ser atualizada para refletir melhorias no sistema...</p>
+
+    <h2>9. Fale Conosco</h2>
+    <p>Dúvidas sobre privacidade ou segurança?</p>
+    <p>Entre em contato: <a href="mailto:privacidade@humano.org">privacidade@humano.org</a></p>
+    <p><strong>A HUMANO acredita que privacidade não é um recurso — é um direito fundamental.</strong></p>
+
+  </div>
+</body>
+</html>

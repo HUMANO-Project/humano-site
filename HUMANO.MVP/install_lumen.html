@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Instalando Lumen OS</title>
+  <style>
+    :root {
+      /* MELHORIA: Variáveis para um tema escuro e coeso */
+      --bg-color-start: #0a0f18;
+      --bg-color-end: #141822;
+      --text-color: #e0f2ff;
+      --primary-color: #00aaff;
+      --progress-bg: #1f2937;
+      --progress-bar-start: #00aaff;
+      --progress-bar-end: #0077cc;
+    }
+
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      /* MELHORIA: Fundo escuro */
+      background: linear-gradient(to bottom, var(--bg-color-start), var(--bg-color-end));
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      color: var(--text-color);
+      overflow: hidden;
+    }
+
+    .container {
+      text-align: center;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    /* MELHORIA: Animação de brilho no título */
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 24px;
+      font-weight: 600;
+      animation: glow 2.5s ease-in-out infinite;
+    }
+
+    .progress-container {
+      width: 80vw;
+      max-width: 500px;
+      height: 25px; /* Levemente mais fina */
+      background: var(--progress-bg);
+      border-radius: 25px;
+      overflow: hidden;
+      box-shadow: inset 0 1px 3px rgba(0,0,0,0.5), 0 0 15px rgba(0,170,255,0.2);
+    }
+
+    /* MELHORIA: Barra de progresso com gradiente e animação de listras */
+    .progress-bar {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(45deg, 
+        var(--progress-bar-start) 25%, 
+        var(--progress-bar-end) 25%, 
+        var(--progress-bar-end) 50%, 
+        var(--progress-bar-start) 50%, 
+        var(--progress-bar-start) 75%, 
+        var(--progress-bar-end) 75%, 
+        var(--progress-bar-end) 100%);
+      background-size: 40px 40px;
+      border-radius: 25px;
+      transition: width 0.3s ease-in-out;
+      animation: moveStripes 1s linear infinite;
+    }
+
+    .reiniciando {
+      display: none;
+      background: black;
+      color: white;
+      font-size: 1.5rem;
+      position: fixed; inset: 0;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      animation: fadeIn 1.5s ease forwards;
+    }
+    
+    /* MELHORIA: Animação para suavizar a saída */
+    .fadeOut {
+      animation: fadeOut 0.8s ease forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; }
+    }
+    @keyframes glow {
+      0%, 100% { text-shadow: 0 0 5px var(--primary-color), 0 0 10px var(--primary-color); }
+      50% { text-shadow: 0 0 10px var(--primary-color), 0 0 20px var(--primary-color); }
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    @keyframes moveStripes {
+        from { background-position: 40px 0; }
+        to { background-position: 0 0; }
+    }
+
+    .blink {
+      animation: blink 1.5s infinite;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="instalacao">
+    <h1>Instalando Lumen OS</h1>
+    <div class="progress-container"
+         id="progressBarContainer"
+         role="progressbar" 
+         aria-valuenow="0" 
+         aria-valuemin="0" 
+         aria-valuemax="100"
+         aria-label="Progresso da instalação do Lumen OS">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+  </div>
+
+  <div class="reiniciando" id="reiniciando">
+    <div>
+      <p class="blink">Reiniciando...</p>
+    </div>
+  </div>
+
+  <script>
+    const progressBar = document.getElementById("progressBar");
+    // MELHORIA: Selecionando o container para atualizar atributos aria
+    const progressBarContainer = document.getElementById("progressBarContainer");
+    const instalacao = document.getElementById("instalacao");
+    const reiniciando = document.getElementById("reiniciando");
+
+    let progress = 0;
+    const interval = setInterval(() => {
+      progress += Math.floor(Math.random() * 10) + 3;
+      if (progress > 100) progress = 100;
+      
+      progressBar.style.width = progress + "%";
+      // MELHORIA: Atualiza o atributo para leitores de tela
+      progressBarContainer.setAttribute("aria-valuenow", progress);
+
+      if (progress >= 100) {
+        clearInterval(interval);
+        setTimeout(() => {
+          // MELHORIA: Adiciona a animação de fadeOut antes de esconder
+          instalacao.classList.add("fadeOut");
+          
+          // Esconde o elemento após a animação de fadeOut terminar
+          setTimeout(() => {
+              instalacao.style.display = "none";
+              reiniciando.style.display = "flex";
+          }, 800); // mesmo tempo da animação
+
+        }, 800);
+
+        setTimeout(() => {
+          window.location.href = "boot_inicial.html";
+        }, 4000);
+      }
+    }, 300);
+  </script>
+
+</body>
+</html>

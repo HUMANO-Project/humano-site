@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Boot Nulla - HUMANO MVP</title>
+  <style>
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+      color: white;
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    #startScreen {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      text-align: center;
+    }
+
+    #bootVideo {
+      display: none;
+      width: 100vw;
+      height: 100vh;
+      object-fit: cover;
+      background: black;
+    }
+
+    button {
+      background-color: rgb(165, 165, 165);
+      color: rgb(0, 0, 0);
+      padding: 12px 24px;
+      font-size: 18px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
+    button:hover {
+      background-color: #ccc;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Tela de início -->
+  <div id="startScreen">
+    <h2>Para melhor experiência, ative o modo tela cheia.</h2>
+    <p>Clique em "Iniciar" para continuar com o processo de instalação.</p>
+    <button id="startButton">Iniciar</button>
+  </div>
+
+  <!-- Vídeo do boot -->
+  <video id="bootVideo" muted autoplay playsinline>
+    <source src="videos/teste.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeo.
+  </video>
+
+  <script>
+    const startScreen = document.getElementById('startScreen');
+    const startButton = document.getElementById('startButton');
+    const video = document.getElementById('bootVideo');
+
+    function goFullScreen() {
+      const docEl = document.documentElement;
+      if (docEl.requestFullscreen) {
+        docEl.requestFullscreen();
+      } else if (docEl.webkitRequestFullscreen) {
+        docEl.webkitRequestFullscreen();
+      } else if (docEl.msRequestFullscreen) {
+        docEl.msRequestFullscreen();
+      }
+    }
+
+    startButton.addEventListener('click', () => {
+      goFullScreen();
+      startScreen.style.display = 'none';
+      video.style.display = 'block';
+      video.play().catch(() => {
+        alert("O vídeo não pôde ser iniciado automaticamente. Verifique as permissões do navegador.");
+      });
+    });
+
+    // Ao fim do vídeo, redireciona para o boot inicial (conexão com os nós)
+    video.addEventListener('ended', () => {
+      window.location.href = 'boot_inicial.html';
+    });
+  </script>
+
+</body>
+</html>

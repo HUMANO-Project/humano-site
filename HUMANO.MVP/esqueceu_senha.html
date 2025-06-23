@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Recuperar Senha - LUMEN IDR</title>
+  <style>
+    /* Exatamente o mesmo CSS das telas de login/cadastro para consistência */
+    :root {
+      --color-primary: #00aaff; --color-primary-dark: #0088cc;
+      --color-text: #e0e0e0; --color-text-muted: #a0b0c0;
+      --color-bg-dark: #11141a; --color-surface: #1a1f2c;
+      --color-border: #30384a; --font-family-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --border-radius: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-family-sans); background-color: var(--color-bg-dark); color: var(--color-text); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    .container { background: var(--color-surface); padding: 30px 40px; border-radius: var(--border-radius); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); max-width: 420px; width: 100%; animation: fadeIn 0.5s ease-out; border: 1px solid var(--color-border); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    h1 { text-align: center; color: var(--color-text); margin-bottom: 10px; font-weight: 600; }
+    .aviso { background: rgba(0, 170, 255, 0.05); border: 1px solid rgba(0, 170, 255, 0.2); padding: 12px; border-radius: var(--border-radius); margin-bottom: 24px; font-size: 0.85rem; color: var(--color-text-muted); text-align: center; }
+    form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    label { font-size: 0.9rem; font-weight: 500; color: var(--color-text-muted); }
+    input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--border-radius); background-color: var(--color-bg-dark); color: var(--color-text); outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; font-size: 1rem; }
+    input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.15); }
+    button[type="submit"] { width: 100%; padding: 14px; background: var(--color-primary); border: none; border-radius: var(--border-radius); color: #0c0c1e; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px; }
+    button[type="submit"]:hover { background: var(--color-primary-dark); }
+    footer { margin-top: 24px; text-align: center; font-size: 0.8rem; color: var(--color-text-muted); }
+    footer a { color: var(--color-primary); text-decoration: none; transition: color 0.3s ease; }
+    footer a:hover { text-decoration: underline; color: var(--color-text); }
+    /* Estilo para a mensagem de sucesso */
+    #successMessage { display: none; text-align: center; padding: 20px 0; }
+    #successMessage p { font-size: 1rem; line-height: 1.6; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div id="formContainer">
+      <h1>Recuperar Senha</h1>
+      <p class="aviso">
+        Insira o e-mail associado à sua IDR. Enviaremos um link para você criar uma nova senha.
+      </p>
+      <form id="recoveryForm">
+        <div class="form-group">
+          <label for="email">E-mail de recuperação</label>
+          <input type="email" id="email" name="email" placeholder="seu-email@exemplo.com">
+        </div>
+
+        <button type="submit">Enviar Link</button>
+      </form>
+
+      <footer>
+        <p><a href="login_idr.html">Lembrou sua senha? Faça login</a></p>
+      </footer>
+    </div>
+
+    <div id="successMessage">
+        <h1>Link Enviado!</h1>
+        <p>
+            Verifique sua caixa de entrada (e a pasta de spam) nos próximos minutos para continuar o processo de recuperação.
+        </p>
+        <br>
+        <a href="login_idr.html">Voltar para o Login</a>
+    </div>
+  </div>
+
+  <script>
+    const recoveryForm = document.getElementById('recoveryForm');
+    const formContainer = document.getElementById('formContainer');
+    const successMessage = document.getElementById('successMessage');
+
+    function exibirMensagemDeSucesso(event) {
+      event.preventDefault(); // Impede o envio real do formulário
+      
+      console.log('Solicitação de recuperação enviada (simulação)...');
+      
+      // Esconde o formulário e exibe a mensagem de sucesso
+      formContainer.style.display = 'none';
+      successMessage.style.display = 'block';
+    }
+
+    recoveryForm.addEventListener('submit', exibirMensagemDeSucesso);
+  </script>
+</body>
+</html>

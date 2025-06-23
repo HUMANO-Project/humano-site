@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Acessar sua IDR - LUMEN</title>
+  <style>
+    /* O CSS permanece o mesmo, garantindo a consistência */
+    :root {
+      --color-primary: #00aaff; --color-primary-dark: #0088cc;
+      --color-text: #e0e0e0; --color-text-muted: #a0b0c0;
+      --color-bg-dark: #11141a; --color-surface: #1a1f2c;
+      --color-border: #30384a; --font-family-sans: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      --border-radius: 8px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: var(--font-family-sans); background-color: var(--color-bg-dark); color: var(--color-text); display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; }
+    .container { background: var(--color-surface); padding: 30px 40px; border-radius: var(--border-radius); box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3); max-width: 420px; width: 100%; animation: fadeIn 0.5s ease-out; border: 1px solid var(--color-border); }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+    h1 { text-align: center; color: var(--color-text); margin-bottom: 10px; font-weight: 600; }
+    .aviso { background: rgba(0, 170, 255, 0.05); border: 1px solid rgba(0, 170, 255, 0.2); padding: 12px; border-radius: var(--border-radius); margin-bottom: 24px; font-size: 0.85rem; color: var(--color-text-muted); text-align: center; }
+    form { display: flex; flex-direction: column; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; }
+    label { font-size: 0.9rem; font-weight: 500; color: var(--color-text-muted); }
+    input[type="text"], input[type="email"], input[type="password"] { width: 100%; padding: 12px; border: 1px solid var(--color-border); border-radius: var(--border-radius); background-color: var(--color-bg-dark); color: var(--color-text); outline: none; transition: border-color 0.3s ease, box-shadow 0.3s ease; font-size: 1rem; }
+    input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(0, 170, 255, 0.15); }
+    button[type="submit"] { width: 100%; padding: 14px; background: var(--color-primary); border: none; border-radius: var(--border-radius); color: #0c0c1e; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: background-color 0.3s ease; margin-top: 10px; }
+    button[type="submit"]:hover { background: var(--color-primary-dark); }
+    footer { margin-top: 24px; text-align: center; font-size: 0.8rem; color: var(--color-text-muted); }
+    footer a { color: var(--color-primary); text-decoration: none; transition: color 0.3s ease; }
+    footer a:hover { text-decoration: underline; color: var(--color-text); }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Acessar sua IDR</h1>
+    <p class="aviso">
+      Insira seus dados para acessar o ecossistema HUMANO.
+    </p>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="documento">Documento (CPF ou ID Nacional)</label>
+        <input type="text" id="documento" name="documento">
+      </div>
+      <div class="form-group">
+        <label for="senha">Senha</label>
+        <input type="password" id="senha" name="senha">
+      </div>
+      <button type="submit">Entrar</button>
+    </form>
+    <footer>
+      <p><a href="esqueceu_senha.html">Esqueceu sua senha?</a> • <a href="login_cadastro.html">Criar uma IDR</a></p>
+    </footer>
+  </div>
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    function redirecionar(event) {
+      event.preventDefault(); 
+      document.querySelector('.container').style.animation = 'fadeOut 0.5s ease forwards';
+      setTimeout(() => {
+          window.location.href = "aberto_lumen.html";
+      }, 500);
+    }
+    const styleSheet = document.createElement("style");
+    styleSheet.innerText = `@keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }`;
+    document.head.appendChild(styleSheet);
+    loginForm.addEventListener('submit', redirecionar);
+  </script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Boot Inicial - Lumen OS</title>
+  <style>
+    :root {
+      --font-monospace: 'Consolas', 'Courier New', monospace;
+      --text-color: #00ff99;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      background: black;
+      color: var(--text-color);
+      font-family: var(--font-monospace);
+      display: flex; justify-content: center; align-items: center;
+      text-align: center; overflow: hidden;
+    }
+
+    .mensagem {
+      font-size: 1.3rem;
+      /* CORREÇÃO (VALOR 1) */
+      width: 30ch;
+      overflow: hidden;
+      white-space: nowrap;
+      border-right: 4px solid var(--text-color);
+      
+      animation: 
+        /* CORREÇÃO (VALOR 2) */
+        typing 3s steps(30) 2s forwards,
+        blink-caret 0.75s step-end infinite;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      /* CORREÇÃO (VALOR 3) */
+      to { width: 30ch; }
+    }
+
+    @keyframes blink-caret {
+      from, to { border-color: transparent; }
+      50% { border-color: var(--text-color); }
+    }
+  </style>
+</head>
+<body>
+  <div class="mensagem" role="status" aria-live="polite">Iniciando conexão com IA-guia </div>
+
+  <script>
+    // Mantido o seu tempo de 10 segundos
+    setTimeout(() => {
+      window.location.href = "cutscene_final.html";
+    }, 10000); 
+  </script>
+</body>
+</html>

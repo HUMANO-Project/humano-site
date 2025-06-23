@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <title>Bloqueio - Nulla OS (Offline)</title>
+  <style>
+    :root {
+      /* Sombra do texto mais forte e em camadas para máxima legibilidade */
+      --text-shadow: 0 2px 4px rgba(0,0,0,0.5), 0 4px 30px rgba(0,0,0,0.8);
+      --unlock-transition-duration: 1.5s;
+    }
+
+    /* Reset e Configuração Base */
+    body, html {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      overflow: hidden;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #ffffff;
+      cursor: pointer;
+    }
+
+    /* Fundo Fixo */
+    .background {
+      position: fixed;
+      inset: 0;
+      /* ALTERAÇÃO: Imagem de fundo específica para esta tela */
+      background: url('imagens/fundobloqueio.jpg') no-repeat center center;
+      background-size: cover;
+      transition: filter var(--unlock-transition-duration) ease-in-out;
+      z-index: 0;
+    }
+
+    .background.unlocked {
+      filter: blur(8px) brightness(0.8);
+    }
+
+    /* Contêiner Principal */
+    main {
+      position: relative;
+      z-index: 1;
+      height: 100vh;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      user-select: none;
+    }
+    
+    .content-wrapper {
+      transition: transform var(--unlock-transition-duration) ease-in-out, opacity var(--unlock-transition-duration) ease-in-out;
+      animation: floatAnimation 6s ease-in-out infinite;
+    }
+    
+    .content-wrapper.unlocked {
+      transform: translateY(-25vh) scale(0.9);
+      opacity: 0;
+    }
+    
+    /* Estilos do Relógio e Data */
+    .time-display, .unlock-prompt {
+      text-shadow: var(--text-shadow);
+    }
+
+    .hora {
+      font-size: clamp(4.5rem, 15vw, 7rem);
+      font-weight: 700;
+      margin: 0;
+      letter-spacing: 4px;
+    }
+
+    .data {
+      font-size: clamp(1.2rem, 4vw, 1.8rem);
+      margin-top: 8px;
+      text-transform: capitalize;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+    
+    /* Rodapé com Avisos de Desbloqueio */
+    .unlock-prompt {
+      position: absolute;
+      bottom: 5vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .unlock-icon {
+      width: 24px;
+      height: 24px;
+      opacity: 0.8;
+      animation: bounce 2.5s ease-in-out infinite;
+    }
+    
+    .unlock-text, .mvp-notice {
+      font-size: 0.9rem;
+      font-weight: 400;
+      margin: 0;
+      padding: 0;
+    }
+
+    .mvp-notice {
+        font-style: italic;
+        opacity: 0.7;
+        margin-top: 5px;
+    }
+    
+    /* Animações */
+    @keyframes floatAnimation {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-12px); }
+      60% { transform: translateY(-8px); }
+    }
+  </style>
+</head>
+<body>
+    <div class="background" id="background"></div>
+
+    <main id="main-container">
+        <div class="content-wrapper" id="content-wrapper">
+            <div class="time-display">
+                <time class="hora" id="hora">--:--</time>
+                <time class="data" id="data">Carregando...</time>
+            </div>
+        </div>
+
+        <footer class="unlock-prompt">
+            <svg class="unlock-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path></svg>
+            <p class="unlock-text">Clique ou toque para desbloquear</p>
+            
+            <p class="mvp-notice">Exemplo Incompleto - MVP Não Interativo</p>
+        </footer>
+    </main>
+
+ <script>
+    // --- Cache de Elementos do DOM ---
+    const background = document.getElementById('background');
+    const mainContainer = document.getElementById('main-container');
+    const contentWrapper = document.getElementById('content-wrapper');
+    const horaEl = document.getElementById('hora');
+    const dataEl = document.getElementById('data');
+
+    // --- Lógica do Relógio ---
+    function atualizarRelogio() {
+      const agora = new Date();
+      horaEl.textContent = new Intl.DateTimeFormat('pt-BR', { hour: '2-digit', minute: '2-digit' }).format(agora);
+      dataEl.textContent = new Intl.DateTimeFormat('pt-BR', { weekday: 'long', day: 'numeric', month: 'long' }).format(agora);
+    }
+    atualizarRelogio();
+    setInterval(atualizarRelogio, 1000);
+
+    // --- Lógica de Desbloqueio ---
+    document.body.addEventListener('click', () => {
+      if (mainContainer.classList.contains('unlocked')) return;
+
+      mainContainer.classList.add('unlocked');
+      background.classList.add('unlocked');
+      contentWrapper.classList.add('unlocked');
+      
+      setTimeout(() => {
+        // ALTERAÇÃO: Redirecionamento específico para esta tela
+        window.location.href = 'nulla_offline.html';
+        
+      }, 1500); // Duração da transição
+    }, { once: true });
+ </script>
+</body>
+</html>

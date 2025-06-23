@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Conectando com IA Miriel...</title>
+  <style>
+    :root {
+      --bg-color: #010022;
+      --primary-color: #00aaff;
+      --primary-dark: #0088cc;
+      --text-color: #ffffff;
+    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html, body {
+      width: 100%; height: 100%;
+      background-color: var(--bg-color);
+      font-family: 'Segoe UI', Tahoma, sans-serif;
+      overflow: hidden;
+      user-select: none;
+      cursor: default;
+    }
+
+    .stars-bg, .stars-bg::after, .stars-bg::before {
+      position: fixed; inset: 0;
+      border-radius: 50%; background: transparent;
+      box-shadow: 0 0 1px 0 #fff, 0 0 2px 0 #fff, 0 0 5px 0 var(--primary-color);
+      animation: animStar 200s linear infinite;
+    }
+    .stars-bg::after { content: ''; transform: rotate(45deg); animation-duration: 150s; }
+    .stars-bg::before { content: ''; transform: rotate(90deg); animation-duration: 100s; }
+
+    #startScreen {
+      position: relative; z-index: 10;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      height: 100%; color: var(--text-color);
+      text-align: center; padding: 20px;
+    }
+
+    #logo, #introText {
+      opacity: 0;
+      animation: fadeInUp 0.8s ease-out forwards;
+    }
+    #logo {
+      width: 120px; height: auto; margin-bottom: 30px;
+      filter: drop-shadow(0 0 10px var(--primary-color));
+      animation-delay: 0.5s;
+    }
+    #introText {
+      font-size: 1.4rem; max-width: 600px; margin-bottom: 30px;
+      text-shadow: 0 0 8px var(--primary-color);
+      animation-delay: 1.0s;
+    }
+    #startButton {
+      padding: 16px 36px; font-size: 1.2rem;
+      background-color: var(--primary-color);
+      color: var(--text-color);
+      border: none; border-radius: 12px;
+      cursor: pointer;
+      box-shadow: 0 0 18px #00aaff88;
+      transition: background-color 0.3s, transform 0.2s;
+      opacity: 0;
+      animation: 
+        fadeInUp 0.8s ease-out 1.5s forwards,
+        pulse 2s infinite 2.5s;
+    }
+    #startButton:hover {
+      background-color: var(--primary-dark);
+      transform: scale(1.05);
+      animation-name: fadeInUp, pulse;
+    }
+    #cutsceneVideo {
+      display: none; width: 100%; height: 100%;
+      object-fit: cover;
+      background-color: #010541;
+      pointer-events: none;
+    }
+    
+    @keyframes fadeOut {
+      from { opacity: 1; }
+      to { opacity: 0; pointer-events: none; } /* Adicionado pointer-events para garantir */
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes pulse {
+      0% { box-shadow: 0 0 18px #00aaff88; }
+      50% { box-shadow: 0 0 30px #00aaff; }
+      100% { box-shadow: 0 0 18px #00aaff88; }
+    }
+    @keyframes animStar {
+      from { transform: translateY(0px) rotate(0deg); }
+      to { transform: translateY(-2000px) rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  
+  <div class="stars-bg" id="starsBg"></div>
+
+  <div id="startScreen">
+    <img id="logo" src="imagens/logo.png" alt="Logo do Ecossistema" />
+    <p id="introText">
+      O ecossistema é o lugar mais seguro do mundo digital e físico em questões tecnológicas.
+    </p>
+    <button id="startButton">Iniciar</button>
+  </div>
+
+  <video id="cutsceneVideo" playsinline preload="auto" tabindex="-1" disablePictureInPicture controlslist="nodownload nofullscreen noremoteplayback">
+    <source src="videos/miriel.mp4" type="video/mp4" />
+    Seu navegador não suporta vídeos.
+  </video>
+
+  <script>
+    // Seleção de elementos
+    const startScreen = document.getElementById("startScreen");
+    const startButton = document.getElementById("startButton");
+    const video = document.getElementById("cutsceneVideo");
+    // CORREÇÃO 2: Seleciona o novo elemento do fundo de estrelas
+    const starsBg = document.getElementById("starsBg");
+
+    // ... (função enterFullscreen continua a mesma) ...
+    async function enterFullscreen(element) {
+      if (element.requestFullscreen) return element.requestFullscreen();
+      if (element.webkitRequestFullscreen) return element.webkitRequestFullscreen();
+      if (element.mozRequestFullScreen) return element.mozRequestFullScreen();
+      if (element.msRequestFullscreen) return element.msRequestFullscreen();
+      return Promise.resolve();
+    }
+
+    async function startVideo() {
+      // Aplica a animação de saída para a tela inicial E para o fundo de estrelas
+      startScreen.style.animation = "fadeOut 0.5s ease forwards";
+      // CORREÇÃO 3: Aplica a mesma animação de saída ao fundo de estrelas
+      starsBg.style.animation = "fadeOut 0.5s ease forwards";
+      
+      await new Promise(resolve => setTimeout(resolve, 500));
+      
+      startScreen.style.display = "none";
+      video.style.display = "block";
+      document.body.style.cursor = "none";
+
+      try {
+        await enterFullscreen(document.documentElement);
+        video.volume = 1.0;
+        await video.play();
+      } catch (err) {
+        console.error("Erro ao iniciar vídeo:", err);
+        alert("Não foi possível iniciar o vídeo. Verifique as permissões do navegador.");
+      }
+    }
+
+    // ... (o resto do seu excelente JavaScript continua o mesmo) ...
+    startButton.addEventListener("click", startVideo);
+    video.addEventListener("ended", () => {
+      if (document.fullscreenElement) {
+        document.exitFullscreen().finally(() => {
+          window.location.href = "lumen_inicio.html";
+        });
+      } else {
+        window.location.href = "lumen_inicio.html";
+      }
+    });
+    setTimeout(() => {
+      if (video.ended) return;
+      if (document.fullscreenElement) {
+        document.exitFullscreen().finally(() => { window.location.href = "lumen_inicio.html"; });
+      } else { 
+        window.location.href = "lumen_inicio.html";
+      }
+    }, 65000);
+    document.addEventListener('keydown', e => {
+      const blockedKeys = ['Space', 'MediaPlayPause', 'ArrowLeft', 'ArrowRight', 'Escape', 'F11'];
+      if (blockedKeys.includes(e.code) && video.style.display === "block") {
+        e.preventDefault();
+      }
+    });
+    document.addEventListener('contextmenu', e => e.preventDefault());
+  </script>
+
+</body>
+</html>
