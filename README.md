@@ -2,7 +2,7 @@
 
 **Este repositório contém o código-fonte completo do site oficial da HUMANO, um ecossistema tecnológico ético e soberano.**
 
-🔗 Acesse: [https://pandora-huma.com](https://pandora-huma.com)
+🔗 Acesse: [https://pandora-huma.com](https://pandora-huma.com) ou (https://humano.netlify.app/)
 
 ---
 
